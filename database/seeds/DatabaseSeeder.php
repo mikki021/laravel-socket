@@ -1,5 +1,8 @@
 <?php
 
+use App\Comment;
+use App\Post;
+use App\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -11,6 +14,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UserSeeder::class);
+        factory(User::class, 5)->create()->each(function ($user) {
+            $users[] = $user;
+            for ($i = 0; $i < 3; $i++) {
+                $user->posts()->save(factory(Post::class)->make());
+            }
+        });
     }
 }
