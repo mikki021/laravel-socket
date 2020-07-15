@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@allPosts');
+
+Route::get('posts/{post}', 'HomeController@singlePost');
+
+Route::get('users/{user}/posts', 'HomeController@userPosts');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
