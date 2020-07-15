@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function allPosts() {
-        $posts = Post::all()->load(['user', 'comments']);
+        $posts = Post::all()->load(['user']);
 
         return view('posts', compact('posts'));
     }
@@ -20,7 +20,7 @@ class HomeController extends Controller
     }
 
     public function userPosts($user) {
-        $posts = Post::where('user_id', $user)->with(['user', 'comments'])->get();
+        $posts = Post::where('user_id', $user)->with(['user', 'comments.user'])->get();
 
         return view('posts', compact('posts'));
     }
