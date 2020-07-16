@@ -16,3 +16,4 @@
         <p>{{ substr($post->content, 0, 150) . '...' }}</p>
     </div>
 </div>
+<br>
