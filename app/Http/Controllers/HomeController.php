@@ -20,7 +20,7 @@ class HomeController extends Controller
     }
 
     public function userPosts($user) {
-        $posts = Post::where('user_id', $user)->with(['user', 'comments.user'])->get();
+        $posts = Post::where('user_id', $user)->with(['user'])->get();
 
         return view('posts', compact('posts'));
     }
